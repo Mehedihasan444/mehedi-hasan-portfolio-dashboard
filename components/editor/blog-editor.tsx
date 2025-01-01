@@ -94,6 +94,7 @@ console.log(blogData)
           <TagInput
             value={tags}
             onChange={setTags}
+            title="tags"
           />
         </div>
 

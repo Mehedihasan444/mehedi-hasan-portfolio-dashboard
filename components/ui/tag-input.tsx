@@ -9,9 +9,10 @@ import { X } from "lucide-react";
 interface TagInputProps {
   value: string[];
   onChange: (value: string[]) => void;
+  title: string;
 }
 
-export function TagInput({ value, onChange }: TagInputProps) {
+export function TagInput({ value, onChange,title }: TagInputProps) {
   const [inputValue, setInputValue] = useState("");
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -31,7 +32,7 @@ export function TagInput({ value, onChange }: TagInputProps) {
   return (
     <div className="space-y-2">
       <Input
-        placeholder="Add tags (press Enter)"
+        placeholder={`Add ${title} (press Enter)`}
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
