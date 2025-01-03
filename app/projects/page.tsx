@@ -8,6 +8,7 @@ import { ProjectForm } from "@/app/projects/project-form";
 import { fetchProjectData } from "./data";
 import Image from "next/image";
 import { TProject } from "@/interface";
+import { baseURL } from "@/config";
 
 export default function ProjectsPage() {
   const [isEditing, setIsEditing] = useState(false);
@@ -32,7 +33,28 @@ export default function ProjectsPage() {
     getProjectData();
   }, []);
 
+  const handleDelete = async (id: string) => {
+    try {
+      const response = await fetch(`${baseURL}/projects/${id}`, {
+        method: 'DELETE',
+        // headers: {
+        //   'Content-Type': 'application/json',
+        // },
+      });
 
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (data.success) {
+        setProjects(projects.filter(project => project._id !== id));
+      }
+    } catch (error) {
+      console.error('Error deleting project:', error);
+      setError('Failed to delete project');
+    }
+  }
   return (
     <div className="p-8 space-y-8">
       <div className="flex justify-between items-center">
@@ -61,7 +83,11 @@ export default function ProjectsPage() {
                 </div>
                 <CardContent className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-muted-foreground mb-4">{project.shortDescription}</p>
+                  <p className="text-muted-foreground mb-4">{project.shortDescription.length > 200
+                    ? `${project.shortDescription.substring(0, 120)}...`
+                    : project.shortDescription}</p>
+
+
                   <div className="flex gap-2">
                     {project?.techStack?.slice(0, 3)?.map((tech) => (
                       <span
@@ -73,11 +99,11 @@ export default function ProjectsPage() {
                     ))}
                   </div>
                 </CardContent>
-                <div className="flex justify-end px-4 pb-4">
-                  <Button variant="secondary" size="icon" asChild>
-                    {/* <ProjectDialog project={project} /> */}
+                <div className="flex justify-end px-4 gap-4 pb-4">
+                  <Button variant="destructive" size="sm" onClick={() => handleDelete(project._id)}>
+                    Delete
                   </Button>
-                  <Button variant="ghost" size="sm" onClick={() => setIsEditing(true)}>Edit</Button>
+                  <Button variant="default" className="text-white" size="sm" onClick={() => setIsEditing(true)}>Edit</Button>
                 </div>
               </Card>
             ))}

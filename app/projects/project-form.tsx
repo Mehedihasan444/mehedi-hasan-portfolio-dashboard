@@ -16,7 +16,7 @@ interface ProjectFormProps {
 export function ProjectForm({ onClose, }: ProjectFormProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [technologies, setTechnologies] = useState<string[]>([]);
+  const [techStack, setTechStack] = useState<string[]>([]);
   const [shortDescription, setShortDescription] = useState("");
   const [startingDate, setStartingDate] = useState("");
   const [endingDate, setEndingDate] = useState("");
@@ -63,7 +63,7 @@ export function ProjectForm({ onClose, }: ProjectFormProps) {
     const data = {
       title,
       description,
-      technologies,
+      techStack,
       shortDescription,
       startingDate,
       endingDate,
@@ -149,17 +149,17 @@ export function ProjectForm({ onClose, }: ProjectFormProps) {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="technologies">Technologies</Label>
+            <Label htmlFor="techStack">TechStack</Label>
             <TagInput
-              value={technologies}
-              onChange={setTechnologies}
-              title="technologies"
+              value={techStack}
+              onChange={setTechStack}
+              title="techStack"
             />
             {/* <Input
-              id="technologies"
+              id="techStack"
               placeholder="e.g., React, TypeScript, Node.js"
-              value={technologies}
-              onChange={(e) => setTechnologies(e.target.value)}
+              value={techStack}
+              onChange={(e) => setTechStack(e.target.value)}
             /> */}
           </div>
           <div className="sm:flex gap-4 justify-between items-center">
