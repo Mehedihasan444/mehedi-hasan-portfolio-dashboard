@@ -70,17 +70,16 @@ export interface TProject {
     degree: string;
     startDate: string;
     endDate: string;
-
     institution: {
         name: string;
         location: string;
         country: string;
     };
     description: string;
-    createdAt: string;
-    updatedAt: string;
-    _id: string;
-    __v: number;
+    createdAt?: string;
+    updatedAt?: string;
+    _id?: string;
+    __v?: number;
   }
 
   export interface TExperience {
