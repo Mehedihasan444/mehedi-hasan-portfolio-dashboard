@@ -83,15 +83,15 @@ export interface TProject {
   }
 
   export interface TExperience {
-    title: string;
-    startDate: string;
-    endDate: string;
+    post: string;
+    startingDate: string;
+    endingDate: string;
     company: {
         name: string;
         location: string;
         country: string;
     };
-    description: string;
+    workingDescription: string;
     createdAt: string;
     updatedAt: string;
     _id: string;

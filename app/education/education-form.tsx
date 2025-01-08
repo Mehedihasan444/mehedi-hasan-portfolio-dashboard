@@ -24,6 +24,7 @@ export function EducationForm({ onClose }: EducationFormProps) {
   const [degree, setDegree] = useState<string>("");
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
+  const [result, setResult] = useState<number>(0)
   const [institution, setInstitution] = useState<Institution>({
     name: "",
     location: "",
@@ -38,12 +39,13 @@ export function EducationForm({ onClose }: EducationFormProps) {
       institution,
       startDate,
       endDate,
-      description
+      description,
+      result
     };
-  
+
     // Convert eduInfo to JSON string
     const jsonEduInfo = JSON.stringify(eduInfo);
-  
+
     // Send data to the backend
     fetch(`${baseURL}/education`, {
       method: 'POST',
@@ -67,71 +69,9 @@ export function EducationForm({ onClose }: EducationFormProps) {
         toast.error('Something went wrong');
       });
   };
-  
-  return (
-    // <Card className="p-4">
-    //   <div className="space-y-4">
-    //     <div className="space-y-2">
-    //       <Label htmlFor="degree">Degree</Label>
-    //       <Input
-    //         id="degree"
-    //         placeholder="Enter degree name"
-    //         value={degree}
-    //         onChange={(e) => setDegree(e.target.value)}
-    //       />
-    //     </div>
-    //     <div className="space-y-2">
-    //       <Label htmlFor="institution">Institution</Label>
-    //       <div className="">
 
-    //       <Input
-    //         id="name"
-    //         placeholder="Enter institution name"
-    //         value={institution}
-    //         onChange={(e) => setInstitution(e.target.value)}
-    //       />
-    //       <Input
-    //         id="location"
-    //         placeholder="Enter institution name"
-    //         value={institution}
-    //         onChange={(e) => setInstitution(e.target.value)}
-    //       />
-    //       <Input
-    //         id="country"
-    //         placeholder="Enter institution name"
-    //         value={institution}
-    //         onChange={(e) => setInstitution(e.target.value)}
-    //       />
-    //       </div>
-    //     </div>
-    //     <div className="space-y-2">
-    //       <Label htmlFor="period">Period</Label>
-    //       <Input
-    //         id="period"
-    //         placeholder="e.g., 2016 - 2020"
-    //         value={period}
-    //         onChange={(e) => setPeriod(e.target.value)}
-    //       />
-    //     </div>
-    //     <div className="space-y-2">
-    //       <Label htmlFor="details">Additional Details</Label>
-    //       <Textarea
-    //         id="details"
-    //         placeholder="Enter additional details"
-    //         value={details}
-    //         onChange={(e) => setDetails(e.target.value)}
-    //       />
-    //     </div>
-    //     <div className="flex justify-end space-x-2">
-    //       <Button variant="outline" onClick={onClose}>
-    //         Cancel
-    //       </Button>
-    //       <Button onClick={handleSave}>
-    //         Save
-    //       </Button>
-    //     </div>
-    //   </div>
-    // </Card>
+  return (
+
     <Card className="p-4">
       <div className="space-y-4">
         <div className="space-y-2">
@@ -193,6 +133,15 @@ export function EducationForm({ onClose }: EducationFormProps) {
               type="date"
               value={endDate.split('T')[0]}
               onChange={(e) => setEndDate(e.target.value)}
+            />
+          </div>
+          <div className="space-y-2 flex-1">
+            <Label htmlFor="result">Result</Label>
+            <Input
+              id="result"
+              type="number"
+              value={result}
+              onChange={(e) => setResult(Number(e.target.value))}
             />
           </div>
         </div>
