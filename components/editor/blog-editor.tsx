@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import dynamic from "next/dynamic";
 import { TagInput } from "../ui/tag-input";
 import { toast } from "sonner";
+import { baseURL } from "@/config";
 
 const Editor = dynamic(() => import("./editor"), {
   ssr: false,
@@ -53,13 +54,12 @@ console.log(blogData)
     // onClose();
  
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/blogs`, {
+      const response = await fetch(`${baseURL}/blogs`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(blogData),
-        credentials: 'include'
       });
     
       if (!response.ok) {
