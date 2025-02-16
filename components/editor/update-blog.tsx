@@ -47,6 +47,7 @@ export function UpdateBlog({ onClose }: BlogEditorProps) {
         <div className="space-y-2">
           <Label>Tags</Label>
           <TagInput
+          title="Tags"
             value={tags}
             onChange={setTags}
           />

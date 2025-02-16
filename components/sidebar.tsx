@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, FileText, Briefcase, GraduationCap, Code2 } from "lucide-react";
+import { LayoutDashboard, FileText, Briefcase, GraduationCap, Code2, Cpu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -31,6 +31,11 @@ const routes = [
     label: "Education",
     icon: GraduationCap,
     href: "/education",
+  },
+  {
+    label: "Skill",
+    icon: Cpu,
+    href: "/skills",
   },
 ];
 

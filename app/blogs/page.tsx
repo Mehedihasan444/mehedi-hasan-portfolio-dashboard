@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus } from "lucide-react";
-import dynamic from "next/dynamic";
 import { BlogEditor } from "@/components/editor/blog-editor";
 import { UpdateBlog } from "@/components/editor/update-blog";
 import { TBlog } from "@/interface";

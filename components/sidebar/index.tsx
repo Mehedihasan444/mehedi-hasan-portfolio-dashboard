@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, FileText, Briefcase, GraduationCap, Code2 } from "lucide-react";
+import { LayoutDashboard, FileText, Briefcase, GraduationCap, Code2, Cpu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CollapseButton } from "./collapse-button";
 import { NavItem } from "./nav-item";
@@ -32,6 +32,11 @@ const routes = [
     label: "Education",
     icon: GraduationCap,
     href: "/education",
+  },
+  {
+    label: "Skill",
+    icon: Cpu,
+    href: "/skills",
   },
 ];
 
